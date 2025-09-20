@@ -32,6 +32,7 @@ public class Matricula {
 	}
 
 	public void cadastrarNota1(BigDecimal nota1) {
+        this.validarNota(nota1);
 		this.nota1 = nota1;
 	}
 
@@ -40,6 +41,7 @@ public class Matricula {
 	}
 
 	public void cadastrarNota2(BigDecimal nota2) {
+        this.validarNota(nota2);
 		this.nota2 = nota2;
 	}
 
@@ -48,16 +50,30 @@ public class Matricula {
 	}
 
 	public void cadastrarNota3(BigDecimal nota3) {
+        this.validarNota(nota3);
 		this.nota3 = nota3;
 	}
+
+    public void validarNota(BigDecimal nota) {
+        if (nota.compareTo(BigDecimal.ZERO) < 0 || nota.compareTo(new BigDecimal("10.0")) > 0) {
+            throw new IllegalArgumentException("A nota deve estar entre 0 e 10.");
+        }
+    }
 
 	public Integer getFrequencia() {
 		return frequencia;
 	}
 
 	public void cadastrarFrequencia(Integer frequencia) {
+        this.validarFrequencia(frequencia);
 		this.frequencia = frequencia;
 	}
+
+    public void validarFrequencia(Integer frequencia) {
+        if (frequencia < 0 || frequencia > 100) {
+            throw new IllegalArgumentException("A frequência deve estar entre 0 e 100.");
+        }
+    }
 
 	public Discente getDiscente() {
 		return discente;
